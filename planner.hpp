@@ -1,34 +1,23 @@
 #pragma once
+#include <bits/stdc++.h>
+#include "flight.hpp"
+using namespace std;
+using ll = long long;
 
-#include <vector>
-#include <map>
-#include <string>
-#include "flight.hpp" // Include our Flight definition
-
-/**
- * @class Planner
- * @brief Manages flight data and provides routing algorithms.
- */
 class Planner {
 private:
-    int num_cities;
-    std::vector<FlightPtr> all_flights;
-    std::map<int, std::vector<FlightPtr>> adj; // city -> outgoing flights
+    vector<Flight> flights;              // list of flights
+    vector<vector<int>> adj;             // adj[city] → list of outgoing flight indices
 
-    // Helper to reconstruct the path (parents: child_flight_no -> parent FlightPtr)
-    std::vector<FlightPtr> reconstructPath(
-        std::map<int, FlightPtr>& parents,
-        FlightPtr end_flight);
+    vector<int> reconstructPath(const vector<int>& parent, int end_index);
 
 public:
-    Planner(const std::vector<Flight>& flights);
+    Planner(const vector<Flight>& flights_data);
 
-    std::vector<FlightPtr> least_flights_earliest_route(
-        int start_city, int end_city, long long t1, long long t2);
+    vector<int> least_flights_earliest_route(int start_city, int end_city, ll t1, ll t2);
 
-    std::vector<FlightPtr> cheapest_route(
-        int start_city, int end_city, long long t1, long long t2);
+    vector<int> cheapest_route(int start_city, int end_city, ll t1, ll t2);
 
-    std::vector<FlightPtr> least_flights_cheapest_route(
-        int start_city, int end_city, long long t1, long long t2);
+    vector<int> least_flights_cheapest_route(int start_city, int end_city, ll t1, ll t2);
 };
+
