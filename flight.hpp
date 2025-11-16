@@ -1,24 +1,17 @@
 #pragma once
+#include <bits/stdc++.h>
+using namespace std;
 
-#include <memory>
-
-/**
- * @struct Flight
- * @brief Represents a single flight (the data).
- */
 struct Flight {
-    const int flight_no;
-    const int start_city;
-    const int departure_time;
-    const int end_city;
-    const int arrival_time;
-    const int fare;
+    int id;             // flight number (0-based index)
+    int start_city;
+    int dep;            // departure time
+    int end_city;
+    int arr;            // arrival time
+    int fare;
 
-    // Constructor
-    Flight(int no, int start, int dep, int end, int arr, int f)
-        : flight_no(no), start_city(start), departure_time(dep),
-          end_city(end), arrival_time(arr), fare(f) {}
+    Flight() = default;
+    Flight(int _id, int s, int d, int e, int a, int f)
+        : id(_id), start_city(s), dep(d), end_city(e), arr(a), fare(f) {}
 };
 
-// Shared pointer alias
-using FlightPtr = std::shared_ptr<Flight>;
